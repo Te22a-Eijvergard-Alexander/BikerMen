@@ -1,23 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class BikeController : MonoBehaviour
 {
     [SerializeField]
     float speed = 5.5f;
-
+    
+     [SerializeField]
+    int healthMax = 3;
+    int healthCurrent;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        healthCurrent = healthMax;
     }
+    
 
     // Update is called once per frame
     void Update()
     {
-     
         //Vroom
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
@@ -39,12 +44,21 @@ public class BikeController : MonoBehaviour
             transform.Translate(-movementY * speed * Time.deltaTime);
         }   
     }
-     void OnTriggerEnter2D(Collider2D other)
+    
+         //Destroying objects
+
+       void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")
         {
+
+            healthCurrent--;
+            if (healthCurrent == 0)
+            {
              Destroy(this.gameObject);
             // SceneManager.LoadScene(2);
             }
+            
         }
     }
+}

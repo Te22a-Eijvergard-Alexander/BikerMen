@@ -23,18 +23,17 @@ public class EnemyController : MonoBehaviour
 
         Vector2 movement = new Vector2(0, -0.7f);
         transform.Translate(movement * speed * Time.deltaTime);
-        if (transform.position.y < -4.5f)
+        if (transform.position.y < -10)
         {
             Destroy(this.gameObject);
         }
 
     }
     
- void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "player")
+        if (other.gameObject.tag == "Player")
         {
-            // Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
