@@ -56,7 +56,7 @@ public class BikeController : MonoBehaviour
             if (healthCurrent == 0)
             {
              Destroy(this.gameObject);
-            // SceneManager.LoadScene(2);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
             }
             
         }
